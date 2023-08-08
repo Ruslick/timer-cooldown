@@ -9,7 +9,6 @@ export type TPages = 'cooldown' | 'timer';
 
 function App() {
     const [page, setPage] = useState<TPages>('timer');
-
     const onPageChange = () => {
         setPage(page === 'timer' ? 'cooldown' : 'timer');
     };
@@ -17,8 +16,8 @@ function App() {
         <>
             <GlobalStyles />
             <HeaderLayout page={page} onPageChange={onPageChange} />
-            <WrapperTimer hidden={page !== 'timer'} />
-            <WrapperCooldown hidden={page !== 'cooldown'} />
+            <WrapperTimer hidden={page === 'cooldown'} />
+            <WrapperCooldown hidden={page === 'timer'} />
         </>
     );
 }

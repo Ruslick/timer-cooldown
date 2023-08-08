@@ -14,14 +14,14 @@ export type IActionTimer = {
 };
 
 
-export const store: IStoreTimer = {
+const store: IStoreTimer = {
     time: 0,
     isRun: false,
     isStarted: false,
     timeoutId: null,
 };
 
-export const reducerTimer = (state: IStoreTimer, action: IActionTimer): IStoreTimer => {
+const reducerTimer = (state: IStoreTimer, action: IActionTimer): IStoreTimer => {
     if (action.type === 'start') {
         return { ...state, isRun: true, isStarted: true };
     }

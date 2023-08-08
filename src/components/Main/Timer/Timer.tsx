@@ -1,10 +1,10 @@
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { useEffect } from 'react';
 import { getActionTimer } from '../../../store/Action';
 import { storeTimer } from '../../../store/TimerStore';
 import { getTime } from '../../../utils/getTime';
-import { Buttons } from './Buttons';
 import { TimeSection } from '../../UI/TimeSection';
+import { TimerButtons } from './TimerButtons';
 
 export const Timer = () => {
     const { time, isRun } = storeTimer.useStore();
@@ -21,14 +21,14 @@ export const Timer = () => {
             };
             running();
         }
-    }, [isRun, dispatch]);
+    }, [isRun]);
 
     return (
         <Container>
             <Container>
                 <TimeSection time={getTime(time)} />
             </Container>
-            <Buttons />
+            <TimerButtons />
         </Container>
     );
 };

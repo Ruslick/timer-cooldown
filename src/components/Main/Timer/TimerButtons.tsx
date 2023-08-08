@@ -1,18 +1,19 @@
-import { Box, Button } from '@mui/material';
-import React from 'react';
+import { Button } from '@mui/material';
+import { useMemo } from 'react';
 import { getActionTimer } from '../../../store/Action';
 import { storeTimer } from '../../../store/TimerStore';
+import { ButtonsWrapper } from '../../UI/ButtonsWrapper';
 
-export const Buttons = () => {
+export const TimerButtons = () => {
     const { isStarted, isRun } = storeTimer.useStore();
     const dispatch = storeTimer.useStoreDispatch();
 
-    const getStartButton = () => {
+    const getStartButton = useMemo(() => {
         if (!isStarted) return 'Start';
         if (isStarted && isRun) return 'Pause';
         if (isStarted && !isRun) return 'Continue';
         throw new Error('error start button');
-    };
+    }, [isStarted, isRun]);
 
     const onStartButton = () => {
         isRun ? dispatch(getActionTimer('stop')) : dispatch(getActionTimer('start'));
@@ -23,13 +24,13 @@ export const Buttons = () => {
     };
 
     return (
-        <Box justifyContent='center' display='flex' mt={6} gap={5}>
-            <Button onClick={onStartButton} size='large'>
-                {getStartButton()}
+        <ButtonsWrapper>
+            <Button variant="contained"  onClick={onStartButton} size='large'>
+                {getStartButton}
             </Button>
-            <Button onClick={onResetButton} size='large'>
+            <Button variant="contained" color='error' onClick={onResetButton} size='large'>
                 Reset
             </Button>
-        </Box>
+        </ButtonsWrapper>
     );
 };

@@ -7,21 +7,26 @@ interface IPageLayout {
     hidden: boolean;
 }
 
-export const Layout = ({ children, title, hidden }: IPageLayout) => {
-    return (
-        <Box
-            sx={{
-                height: `100vh`,
-                display: hidden ? 'none' : 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            <Typography variant='h1' align='center'>
-                {title}
-            </Typography>
-            {children}
-        </Box>
-    );
-};
+export const Layout = React.memo(
+    ({ children, title, hidden }: IPageLayout) => {
+        return (
+            <Box
+                sx={{
+                    height: `100vh`,
+                    display: hidden ? 'none' : 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <Typography variant='h3' align='center'>
+                    {title}
+                </Typography>
+                {children}
+            </Box>
+        );
+    },
+    (prev, next) => {
+        return prev.hidden === next.hidden;
+    }
+);

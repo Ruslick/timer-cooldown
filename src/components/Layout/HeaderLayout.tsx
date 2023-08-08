@@ -14,8 +14,7 @@ export const HeaderLayout = ({ page, onPageChange }: { page: TPages; onPageChang
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
-                paddingTop: 5,
-                paddingBottom: 5,
+                paddingTop: 3,
             }}
         >
             <Box justifySelf='end'>
@@ -40,6 +39,8 @@ export const HeaderLayout = ({ page, onPageChange }: { page: TPages; onPageChang
                     },
                 }}
                 value={page === 'timer' ? 'on' : 'off'}
+                // ********************************************
+                // ********************************************
                 onChange={onPageChange}
             />
             <Box justifySelf='start'>
