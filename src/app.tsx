@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import GlobalStyles from './assets/styles/globalStyles';
 import { HeaderLayout } from './components/Layout/HeaderLayout';
 import { WrapperTimer } from './components/Main/Timer/WrapperTimer';
@@ -9,9 +8,9 @@ export type TPages = 'cooldown' | 'timer';
 
 function App() {
     const [page, setPage] = useState<TPages>('timer');
-    const onPageChange = () => {
+    const onPageChange = React.useCallback(() => {
         setPage(page === 'timer' ? 'cooldown' : 'timer');
-    };
+    }, [page]);
     return (
         <>
             <GlobalStyles />

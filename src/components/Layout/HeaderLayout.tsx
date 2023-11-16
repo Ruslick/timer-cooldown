@@ -1,22 +1,22 @@
-import { Box, Switch } from '@mui/material';
+import { Box, Switch, SxProps } from '@mui/material';
 import React from 'react';
 import { ToggleTitle } from '../UI/ToggleTitle';
 import { TPages } from '../../app';
 
+const styled: SxProps = {
+    display: 'grid',
+    position: 'fixed',
+    gridTemplateColumns: '6fr 1fr 6fr',
+    justifyItems: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    paddingTop: 3,
+};
+
 export const HeaderLayout = ({ page, onPageChange }: { page: TPages; onPageChange: () => void }) => {
     return (
-        <Box
-            sx={{
-                display: 'grid',
-                position: 'fixed',
-                gridTemplateColumns: '6fr 1fr 6fr',
-                justifyItems: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                paddingTop: 3,
-            }}
-        >
+        <Box sx={styled}>
             <Box justifySelf='end'>
                 <ToggleTitle variant='timer' page={page} />
             </Box>

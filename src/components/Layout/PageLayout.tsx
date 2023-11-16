@@ -19,7 +19,7 @@ export const Layout = React.memo(
                     justifyContent: 'center',
                 }}
             >
-                <Typography variant='h3' align='center'>
+                <Typography variant='h3' align='center' pb={5}>
                     {title}
                 </Typography>
                 {children}

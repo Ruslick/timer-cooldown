@@ -2,8 +2,9 @@ import { Container, Input } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
-import { getSetActionCooldown } from '../../../store/Action';
+import { getSetActionCooldown } from '../../../store/Actions';
 import { storeCooldown } from '../../../store/ColldownStore';
+import { useCallback } from 'react';
 
 export interface ISettings {
     inputStep: number;
@@ -13,7 +14,7 @@ export interface ISettings {
 }
 
 interface IInputSlider {
-    unit: "minutes" | "seconds";
+    unit: 'minutes' | 'seconds';
     label: string;
     settings: ISettings;
 }
@@ -21,15 +22,18 @@ interface IInputSlider {
 export const InputSlider = ({ label, unit, settings }: IInputSlider) => {
     const { inputStep, inputMax, sliderMax, sliderStep } = settings;
     const store = storeCooldown.useStore();
-    
+
     const dispatch = storeCooldown.useStoreDispatch();
 
-    const currentUnit = store[unit]
+    const currentUnit = store[unit];
 
-    const handle = (event: React.BaseSyntheticEvent) => {
-        const targetValue = +event.target.value > inputMax ? inputMax : +event.target.value;
-        dispatch(getSetActionCooldown(unit, targetValue))
-    };
+    const handle = useCallback(
+        (event: React.BaseSyntheticEvent) => {
+            const targetValue = +event.target.value > inputMax ? inputMax : +event.target.value;
+            dispatch(getSetActionCooldown(unit, targetValue));
+        },
+        [unit, dispatch, inputMax]
+    );
 
     return (
         <Container>

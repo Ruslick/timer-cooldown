@@ -3,8 +3,9 @@ import { Layout } from '../../Layout/PageLayout';
 import { Cooldown } from './Cooldown';
 import { storeCooldown } from '../../../store/ColldownStore';
 
-export const WrapperCooldown = ({hidden}: {hidden: boolean}) => {
-    const {reducer, StoreDispatch, StoreContext, store} = storeCooldown
+export const WrapperCooldown = ({ hidden }: { hidden: boolean }) => {
+    console.log('cooldown render');
+    const { reducer, StoreDispatch, StoreContext, store } = storeCooldown;
     const [state, dispatch] = useReducer(reducer, store);
 
     return (

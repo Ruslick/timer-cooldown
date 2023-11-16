@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
-import { useEffect } from 'react';
-import { getActionTimer } from '../../../store/Action';
+import React, { useEffect } from 'react';
+import { getActionTimer } from '../../../store/Actions';
 import { storeTimer } from '../../../store/TimerStore';
 import { getTime } from '../../../utils/getTime';
 import { TimeSection } from '../../UI/TimeSection';
@@ -9,6 +9,8 @@ import { TimerButtons } from './TimerButtons';
 export const Timer = () => {
     const { time, isRun } = storeTimer.useStore();
     const dispatch = storeTimer.useStoreDispatch();
+
+    const timeMemo = React.useMemo(() => getTime(time), [time]);
 
     useEffect(() => {
         if (isRun) {
@@ -21,12 +23,12 @@ export const Timer = () => {
             };
             running();
         }
-    }, [isRun]);
+    }, [isRun, dispatch]);
 
     return (
         <Container>
             <Container>
-                <TimeSection time={getTime(time)} />
+                <TimeSection time={timeMemo} />
             </Container>
             <TimerButtons />
         </Container>

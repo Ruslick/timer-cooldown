@@ -17,7 +17,7 @@ export interface IPayloadTimeObj {
     seconds?: number;
 }
 export type IActionCooldown = {
-    type: 'start' | 'stop' | 'reset' | 'decrease' | 'updateTimeout' | 'set' | "done";
+    type: 'start' | 'stop' | 'reset' | 'decrease' | 'updateTimeout' | 'set' | 'done';
     payload?: { timeoutId?: NodeJS.Timeout; time?: IPayloadTimeObj };
 };
 

@@ -13,7 +13,6 @@ export type IActionTimer = {
     payload?: { timeoutId: NodeJS.Timeout };
 };
 
-
 const store: IStoreTimer = {
     time: 0,
     isRun: false,
@@ -46,9 +45,8 @@ const reducerTimer = (state: IStoreTimer, action: IActionTimer): IStoreTimer => 
     return state;
 };
 
-
 class TimerStore extends InitStore<IStoreTimer, IActionTimer> {
-    timerStore
+    timerStore;
     reducer;
     constructor(timerStore: typeof store, reducer: typeof reducerTimer) {
         super();
@@ -57,5 +55,4 @@ class TimerStore extends InitStore<IStoreTimer, IActionTimer> {
     }
 }
 
-
-export const storeTimer = new TimerStore(store, reducerTimer)
+export const storeTimer = new TimerStore(store, reducerTimer);
